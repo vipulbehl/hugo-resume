@@ -1,7 +1,25 @@
-<div class="p0 m0 text-center" >
+<div class="p0 m0 text-center">
+  <a href="mailto:{{ .Param "email" }}"><p class="">{{ .Param "email" }}</p></a>
   <p class="">Scan contact card</p>
   <img id="qr-code" 
-  class="qrcode" 
-  alt="Scannable QR code with contact info" 
-  src="https://quickchart.io/chart?cht=qr&chs=200x200&chl=MECARD:N:{{ .Param "lastName" }},{{ .Param "firstName" }};{{ .Param "address" }};TEL:{{ .Param "phone" }};EMAIL:{{ .Param "email" }};URL:{{ .Site.BaseURL }};NOTE:{{ .Param "contactNote" }};;"/>
+       class="qrcode" 
+       alt="Scannable QR code with contact info" 
+       src="https://quickchart.io/chart?cht=qr&chs=200x200&chl=MECARD:N:{{ .Param "lastName" }},{{ .Param "firstName" }};{{ .Param "address" }};TEL:{{ .Param "phone" }};EMAIL:{{ .Param "email" }};URL:{{ .Site.BaseURL }};NOTE:{{ .Param "contactNote" }};;" />
+  
+  <div class="social-links mt-3">
+    <p>Follow me on:</p>
+    <ul class="social-icons list-inline">
+      {{ range .Site.Params.handles }}
+      <li class="list-inline-item">
+        <a href="{{ .link }}" target="_blank" rel="noopener noreferrer" title="{{ .name }}">
+          {{ if .icon }}
+          <i class="fab fa-{{ .icon }}"></i> <!-- Font Awesome icon -->
+          {{ else }}
+          {{ .name }}
+          {{ end }}
+        </a>
+      </li>
+      {{ end }}
+    </ul>
+  </div>
 </div>
